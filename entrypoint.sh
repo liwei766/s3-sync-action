@@ -19,7 +19,7 @@ fi
 
 # Default to us-east-1 if AWS_REGION not set.
 if [ -z "$AWS_REGION" ]; then
-  AWS_REGION="us-east-1"
+  AWS_REGION="ap-northeast-1"
 fi
 
 # Override default AWS endpoint if user sets AWS_S3_ENDPOINT.
@@ -43,6 +43,8 @@ sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
               --profile s3-sync-action \
               --no-progress \
               ${ENDPOINT_APPEND} $*"
+
+sh -c "aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths '/*'"
 
 # Clear out credentials after we're done.
 # We need to re-run `aws configure` with bogus input instead of
