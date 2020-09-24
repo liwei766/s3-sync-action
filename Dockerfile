@@ -1,4 +1,4 @@
-FROM python:3.7.4
+FROM python:3.8-alpine
 
 LABEL "com.github.actions.name"="S3 Sync & reflash cloudfront"
 LABEL "com.github.actions.description"="Sync a directory to an AWS S3 repository and create-invalidation distribution in cloudfront"
@@ -11,7 +11,7 @@ LABEL homepage="https://liwei766.net/"
 LABEL maintainer="LIWEI <uccblw@gmail.com>"
 
 # https://github.com/aws/aws-cli/blob/master/CHANGELOG.rst
-ENV AWSCLI_VERSION='2.0.47'
+ENV AWSCLI_VERSION='1.18.145'
 
 RUN pip install --quiet --no-cache-dir awscli==${AWSCLI_VERSION}
 
