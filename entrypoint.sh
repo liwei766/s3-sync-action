@@ -44,9 +44,9 @@ sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
               --no-progress \
               ${ENDPOINT_APPEND} $*"
 
-if [ -z "$DISTRIBUTION_ID" ]; then
+#if [ -z "$DISTRIBUTION_ID" ]; then
   sh -c "aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths '/*'"
-fi
+#fi
 
 
 # Clear out credentials after we're done.
